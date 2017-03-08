@@ -13,6 +13,7 @@ $api->version('v1', function (Router $api) {
         $api->post('recovery', 'App\\Api\\V1\\Controllers\\ForgotPasswordController@sendResetEmail');
         $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
     });
+    
 
     $api->group(['middleware' => 'jwt.auth'], function(Router $api) {
 //        $api->get('test', 'App\\Api\\V1\\Controllers\\TestController@index');
@@ -31,6 +32,10 @@ $api->version('v1', function (Router $api) {
             }
         ]);
 
+        $api->get('test', 'App\\Api\\V1\\Controllers\\TestController@index');
+
+
+
         $api->post('book/store', 'App\Api\V1\Controllers\BookController@store');
         $api->get('book', 'App\Api\V1\Controllers\BookController@index');
     });
@@ -46,14 +51,11 @@ $api->version('v1', function (Router $api) {
     });
 
 
-    Route::get('/test', function () {
-        return JWTAuth::parseToken()->authenticate();
-    });
+//    Route::get('/test', function () {
+//        return JWTAuth::parseToken()->authenticate();
+//    });
 
 //
-//    $api->group(['middleware' => 'api.auth'], function ($api) {
-//        $api->post('book/store', 'App\Api\V1\Controllers\BookController@store');
-//        $api->get('book', 'App\Api\V1\Controllers\BookController@index');
-//    });
+
 
 });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBooksTable extends Migration
+class CreateTaskTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('author_name');
-            $table->integer('pages_count');
-
-            $table->integer('user_id')->index();
+            $table->integer('author_id');
+            $table->string('name', 225);
+            $table->text('description');
+            $table->text('involved')->nullable();
+            $table->timestamp('last_date')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('tasks');
     }
 }
